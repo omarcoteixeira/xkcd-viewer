@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
-import logo from './assets/images/logo.svg';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import './assets/stylesheets/App.css';
 
+import { CommicService } from './app/services/ComicService';
+
+import { ComicViewer, ComicNavigation }  from './app/components';
+
 class App extends Component {
+  componentWillMount() {
+    this.props.CommicService();
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Xkcd Viewer</h1>
+          <div className="container">
+            <ComicViewer></ComicViewer>
+            <ComicNavigation></ComicNavigation>
+          </div>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
 }
+const mapDispatchToProps = dispatch => bindActionCreators({ CommicService }, dispatch);
 
-export default App;
+const connector = connect(null, mapDispatchToProps);
+export default connector(App);

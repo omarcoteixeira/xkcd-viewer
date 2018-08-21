@@ -5,6 +5,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## How to Run
 
+To run the application use the following command:
+
+```bash
+npm start
+```
+
 ## How to Deploy
 
 
